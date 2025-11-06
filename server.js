@@ -1,9 +1,17 @@
 import 'dotenv/config';
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 const app = express();
 app.use(express.json()); //API Aceita Json
+
+app.use(cors({
+    origin: 'http://localhost:4200', //URL do Angular
+    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: false
+}));
 
 //Conectar no MongoDB Atlas
 mongoose.connect(process.env.MONGODB_URI, { dbName: 'Aulas' })
