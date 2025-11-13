@@ -33,6 +33,7 @@ app.get('/', (req, res) => res.json({ msg: 'API rodando' }));
 
 //Cria aluno
 app.post('/alunos', async (req, res) => {
+    const aluno = await Aluno.create(req.body);
     res.status(201).json(aluno);
 })
 
